@@ -1,5 +1,5 @@
 import {
-  pgTable,
+  pgSchema,
   text,
   timestamp,
   boolean,
@@ -7,7 +7,12 @@ import {
   index,
 } from "drizzle-orm/pg-core";
 
-export const user = pgTable("user", {
+// All better-auth tables live in their own Postgres schema, isolated from
+// the Payload CMS tables (see payload.config.ts's `schemaName: 'payload'`)
+// and from the default `public` schema.
+export const betterAuthSchema = pgSchema("better-auth");
+
+export const user = betterAuthSchema.table("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
@@ -21,7 +26,7 @@ export const user = pgTable("user", {
   lastActiveAt: timestamp("last_active_at"),
 });
 
-export const session = pgTable(
+export const session = betterAuthSchema.table(
   "session",
   {
     id: text("id").primaryKey(),
@@ -42,7 +47,7 @@ export const session = pgTable(
   (table) => [index("session_userId_idx").on(table.userId)],
 );
 
-export const account = pgTable(
+export const account = betterAuthSchema.table(
   "account",
   {
     id: text("id").primaryKey(),
@@ -66,7 +71,7 @@ export const account = pgTable(
   (table) => [index("account_userId_idx").on(table.userId)],
 );
 
-export const verification = pgTable(
+export const verification = betterAuthSchema.table(
   "verification",
   {
     id: text("id").primaryKey(),
@@ -82,7 +87,7 @@ export const verification = pgTable(
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
 
-export const organization = pgTable("organization", {
+export const organization = betterAuthSchema.table("organization", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   slug: text("slug").notNull().unique(),
@@ -91,7 +96,7 @@ export const organization = pgTable("organization", {
   metadata: text("metadata"),
 });
 
-export const team = pgTable(
+export const team = betterAuthSchema.table(
   "team",
   {
     id: text("id").primaryKey(),
@@ -108,7 +113,7 @@ export const team = pgTable(
   (table) => [index("team_organizationId_idx").on(table.organizationId)],
 );
 
-export const teamMember = pgTable(
+export const teamMember = betterAuthSchema.table(
   "team_member",
   {
     id: text("id").primaryKey(),
@@ -127,7 +132,7 @@ export const teamMember = pgTable(
   ],
 );
 
-export const member = pgTable(
+export const member = betterAuthSchema.table(
   "member",
   {
     id: text("id").primaryKey(),
@@ -146,7 +151,7 @@ export const member = pgTable(
   ],
 );
 
-export const invitation = pgTable(
+export const invitation = betterAuthSchema.table(
   "invitation",
   {
     id: text("id").primaryKey(),
