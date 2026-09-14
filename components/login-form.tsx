@@ -16,13 +16,22 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 
+function safeRedirect(redirectTo: string | undefined) {
+  if (!redirectTo || !redirectTo.startsWith("/") || redirectTo.startsWith("//")) {
+    return "/dashboard"
+  }
+  return redirectTo
+}
+
 export function LoginForm({
   className,
+  redirectTo,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div"> & { redirectTo?: string }) {
   const router = useRouter()
   const [error, setError] = React.useState<string | null>(null)
   const [loading, setLoading] = React.useState(false)
+  const destination = safeRedirect(redirectTo)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -42,13 +51,13 @@ export function LoginForm({
       return
     }
 
-    router.push("/dashboard")
+    router.push(destination)
   }
 
   async function handleGoogleSignIn() {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/dashboard",
+      callbackURL: destination,
     })
   }
 
@@ -78,7 +87,15 @@ export function LoginForm({
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <div className="flex items-center justify-between">
+                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <a
+                    href="/forgot-password"
+                    className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
                 <Input id="password" name="password" type="password" required />
               </Field>
               <Field>
