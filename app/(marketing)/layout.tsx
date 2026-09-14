@@ -3,6 +3,7 @@ import { headers } from "next/headers"
 
 import { auth } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
+import { CookiePreferencesLink } from "@/components/analytics-consent"
 
 export default async function MarketingLayout({
   children,
@@ -48,6 +49,7 @@ export default async function MarketingLayout({
           <Link href="/privacy" className="hover:text-foreground">
             Privacy Policy
           </Link>
+          <CookiePreferencesLink className="hover:text-foreground" />
         </nav>
       </footer>
     </div>

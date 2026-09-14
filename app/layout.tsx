@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AnalyticsConsent } from "@/components/analytics-consent";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <TooltipProvider>{children}</TooltipProvider>
           <Toaster />
+          <AnalyticsConsent />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

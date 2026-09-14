@@ -45,8 +45,9 @@ export default function PrivacyPolicyPage() {
               use the Service.
             </li>
             <li>
-              <strong className="text-foreground">Cookies and session data</strong> — used to keep
-              you signed in and to remember your preferences.
+              <strong className="text-foreground">Cookies and session data</strong> — a strictly
+              necessary cookie keeps you signed in. If you accept analytics cookies via the cookie
+              banner, we also set analytics cookies as described below.
             </li>
           </ul>
         </section>
@@ -84,6 +85,11 @@ export default function PrivacyPolicyPage() {
               <strong className="text-foreground">Vercel</strong> — to host the Service and
               provide privacy-friendly product analytics and performance monitoring.
             </li>
+            <li>
+              <strong className="text-foreground">Google Analytics</strong> — to help us
+              understand how the Service is used, only if you accept analytics cookies via the
+              cookie banner described below.
+            </li>
           </ul>
           <p>
             Each of these providers processes data only as necessary to provide their service to
@@ -92,7 +98,20 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2>5. Data Sharing</h2>
+          <h2>5. Cookies and Analytics Consent</h2>
+          <p>
+            We use one strictly necessary cookie to keep you signed in; this does not require
+            consent and cannot be disabled while remaining signed in. On your first visit, we ask
+            for your consent before enabling Google Analytics. If you accept, Google Analytics
+            sets cookies (such as <code>_ga</code> and <code>_ga_*</code>) to distinguish visitors
+            and measure usage; if you decline, no analytics script loads and no analytics cookies
+            are set. You can change your choice at any time using the &ldquo;Cookie
+            Preferences&rdquo; link in the footer.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Data Sharing</h2>
           <p>
             We do not sell your personal information. We share information only with the
             third-party service providers described above, other members of an organization you
@@ -103,7 +122,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2>6. Data Retention</h2>
+          <h2>7. Data Retention</h2>
           <p>
             We retain your information for as long as your account is active or as needed to
             provide the Service. If you delete your account, we delete or anonymize your personal
@@ -113,7 +132,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2>7. Security</h2>
+          <h2>8. Security</h2>
           <p>
             We use reasonable administrative, technical, and physical safeguards to protect your
             information, including encrypted connections, hashed passwords, and access controls.
@@ -123,7 +142,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2>8. Your Rights and Choices</h2>
+          <h2>9. Your Rights and Choices</h2>
           <p>
             Depending on your location, you may have the right to access, correct, export, or
             delete your personal information. You can update your account information at any time
@@ -133,7 +152,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2>9. Children&apos;s Privacy</h2>
+          <h2>10. Children&apos;s Privacy</h2>
           <p>
             The Service is not directed to children under 16, and we do not knowingly collect
             personal information from children under 16. If you believe a child has provided us
@@ -142,7 +161,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2>10. Changes to This Policy</h2>
+          <h2>11. Changes to This Policy</h2>
           <p>
             We may update this Privacy Policy from time to time. If we make material changes, we
             will notify you by updating the &ldquo;Last updated&rdquo; date above or, where
@@ -151,7 +170,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2>11. Contact Us</h2>
+          <h2>12. Contact Us</h2>
           <p>
             If you have questions about this Privacy Policy, contact us at{" "}
             <a href="mailto:support@castroai.com" className="text-foreground underline underline-offset-4">
