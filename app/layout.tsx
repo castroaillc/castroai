@@ -3,7 +3,8 @@ import { Geist, Geist_Mono, Roboto_Slab, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const robotoSlab = Roboto_Slab({subsets:['latin'],variable:'--font-serif'});
@@ -31,6 +32,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <TooltipProvider>{children}</TooltipProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

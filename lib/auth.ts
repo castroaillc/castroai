@@ -11,7 +11,10 @@ const db = drizzle({ client: sql });
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg", schema }),
-  baseURL: "http://localhost:3000/",
+  secret: process.env.BETTER_AUTH_SECRET,
+  baseURL:
+    process.env.BETTER_AUTH_URL ??
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
   emailAndPassword: { enabled: true },
   socialProviders: {
     google: {
