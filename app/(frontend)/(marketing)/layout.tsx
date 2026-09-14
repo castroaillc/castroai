@@ -23,6 +23,13 @@ export default async function MarketingLayout({
           <Button
             variant="ghost"
             nativeButton={false}
+            render={<Link href="/case-studies" />}
+          >
+            Case Studies
+          </Button>
+          <Button
+            variant="ghost"
+            nativeButton={false}
             render={<Link href="/book-a-call" />}
           >
             Book a call
@@ -69,6 +76,11 @@ export default async function MarketingLayout({
               <li>
                 <Link href="/signup" className="hover:text-foreground">
                   Get Started
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className="hover:text-foreground">
+                  Case Studies
                 </Link>
               </li>
               <li>

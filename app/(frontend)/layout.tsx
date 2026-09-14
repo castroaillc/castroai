@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AnalyticsConsent } from "@/components/analytics-consent";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
+import { defaultOgImage, getSiteUrl } from "@/lib/site"
 const ibmPlexSans = IBM_Plex_Sans({subsets:['latin'],weight:['400','500','600'],variable:'--font-sans'});
 
 const spaceGrotesk = Space_Grotesk({subsets:['latin'],variable:'--font-heading'});
@@ -24,9 +25,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description = "AI automation for startups.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: "castroai",
-  description: "castroai",
+  description,
+  openGraph: {
+    type: "website",
+    siteName: "castroai",
+    title: "castroai",
+    description,
+    images: [defaultOgImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "castroai",
+    description,
+    images: [defaultOgImage],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

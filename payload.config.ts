@@ -3,12 +3,16 @@ import { fileURLToPath } from 'node:url'
 
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
+import { CaseStudies } from './collections/CaseStudies'
 import { Admins } from './collections/Admins'
 import { Media } from './collections/Media'
+import { Landing } from './globals/Landing'
+import { getSiteUrl } from './lib/site'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +27,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname, 'app', '(payload)'),
     },
   },
-  collections: [Admins, Media],
+  collections: [Admins, Media, CaseStudies],
+  globals: [Landing],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -50,6 +55,15 @@ export default buildConfig({
         media: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+    seoPlugin({
+      collections: ['case-studies'],
+      uploadsCollection: 'media',
+      tabbedUI: true,
+      generateTitle: ({ doc }) => (doc?.title ? `${doc.title} | castroai Case Studies` : 'castroai'),
+      generateDescription: ({ doc }) => doc?.excerpt || '',
+      generateImage: ({ doc }) => doc?.heroImage,
+      generateURL: ({ doc }) => `${getSiteUrl()}/case-studies/${doc?.slug || ''}`,
     }),
   ],
 })
