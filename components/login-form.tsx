@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { cn } from "cn"
 
 import { authClient } from "@/lib/auth-client"
+import { Logo } from "@/components/logo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -68,6 +69,7 @@ export function LoginForm({
           <form className="p-6 md:p-8" onSubmit={handleSubmit}>
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
+                <Logo className="mb-2 text-lg" />
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-balance text-muted-foreground">
                   Login to your account

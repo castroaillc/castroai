@@ -3,6 +3,7 @@ import { headers } from "next/headers"
 
 import { auth } from "@/lib/auth"
 import { AppSidebar } from "@/components/app-sidebar"
+import { Logo } from "@/components/logo"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -33,6 +34,7 @@ export default async function DashboardLayout({
               orientation="vertical"
               className="mr-2 data-vertical:h-4 data-vertical:self-auto"
             />
+            <Logo className="text-sm" />
           </div>
           <div className="px-4">
             <ModeToggle />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto_Slab, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Roboto_Slab, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,7 +8,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AnalyticsConsent } from "@/components/analytics-consent";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const ibmPlexSans = IBM_Plex_Sans({subsets:['latin'],weight:['400','500','600'],variable:'--font-sans'});
+
+const spaceGrotesk = Space_Grotesk({subsets:['latin'],variable:'--font-heading'});
 
 const robotoSlab = Roboto_Slab({subsets:['latin'],variable:'--font-serif'});
 
@@ -32,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, robotoSlab.variable, "font-sans", inter.variable)}
+      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, robotoSlab.variable, "font-sans", ibmPlexSans.variable, spaceGrotesk.variable)}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>

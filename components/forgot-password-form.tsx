@@ -5,6 +5,7 @@ import Link from "next/link"
 import { cn } from "cn"
 
 import { authClient } from "@/lib/auth-client"
+import { Logo } from "@/components/logo"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Field, FieldLabel } from "@/components/ui/field"
@@ -39,6 +40,9 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
+        <div className="flex justify-center pt-6">
+          <Logo className="text-lg" />
+        </div>
         <CardHeader>
           <CardTitle>Reset your password</CardTitle>
           <CardDescription>

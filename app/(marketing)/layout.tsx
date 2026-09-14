@@ -4,6 +4,7 @@ import { headers } from "next/headers"
 import { auth } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 import { CookiePreferencesLink } from "@/components/analytics-consent"
+import { Logo } from "@/components/logo"
 
 export default async function MarketingLayout({
   children,
@@ -15,8 +16,8 @@ export default async function MarketingLayout({
   return (
     <div className="flex min-h-svh flex-col">
       <header className="flex items-center justify-between border-b px-6 py-4">
-        <Link href="/" className="font-semibold">
-          castroai
+        <Link href="/">
+          <Logo className="text-lg" />
         </Link>
         <nav className="flex items-center gap-4">
           {session ? (
