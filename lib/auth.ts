@@ -4,6 +4,7 @@ import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
 import * as schema from "./auth-schema";
 import { organization } from "better-auth/plugins"
+import { dash } from "@better-auth/infra";
 
 
 const sql = neon(process.env.DATABASE_URL!);
@@ -25,6 +26,11 @@ export const auth = betterAuth({
   plugins: [organization({
     teams:{
       enabled: true,
+    }
+  }),dash({
+    activityTracking:{
+      enabled: true,
+      updateInterval: 300000
     }
   })],
 });
