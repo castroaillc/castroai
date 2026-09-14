@@ -20,9 +20,9 @@ export default function Home() {
           size="lg"
           variant="outline"
           nativeButton={false}
-          render={<Link href="/login" />}
+          render={<Link href="/book-a-call" />}
         >
-          Login
+          Book a call
         </Button>
       </div>
     </section>
