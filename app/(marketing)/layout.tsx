@@ -39,6 +39,17 @@ export default async function MarketingLayout({
         </nav>
       </header>
       <main className="flex flex-1 flex-col">{children}</main>
+      <footer className="flex items-center justify-between border-t px-6 py-4 text-sm text-muted-foreground">
+        <span>&copy; {new Date().getFullYear()} castroai</span>
+        <nav className="flex items-center gap-4">
+          <Link href="/terms" className="hover:text-foreground">
+            Terms of Service
+          </Link>
+          <Link href="/privacy" className="hover:text-foreground">
+            Privacy Policy
+          </Link>
+        </nav>
+      </footer>
     </div>
   )
 }

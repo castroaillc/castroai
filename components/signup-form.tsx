@@ -144,8 +144,15 @@ export function SignupForm({
         </a>
       </p>
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our{" "}
+        <a href="/terms" className="underline underline-offset-4 hover:text-foreground">
+          Terms of Service
+        </a>{" "}
+        and{" "}
+        <a href="/privacy" className="underline underline-offset-4 hover:text-foreground">
+          Privacy Policy
+        </a>
+        .
       </FieldDescription>
     </div>
   )
