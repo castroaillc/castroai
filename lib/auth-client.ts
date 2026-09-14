@@ -1,7 +1,11 @@
 import { createAuthClient } from "better-auth/react";
 import { sentinelClient } from "@better-auth/infra/client";
+import { organizationClient } from "better-auth/client/plugins";
 export const authClient = createAuthClient({
     plugins: [
-    sentinelClient()
+    sentinelClient(),
+    organizationClient({
+      teams: { enabled: true },
+    }),
   ]
 });

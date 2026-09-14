@@ -26,7 +26,8 @@ export const auth = betterAuth({
   plugins: [organization({
     teams:{
       enabled: true,
-    }
+    },
+    organizationLimit: 1,
   }),dash({
     apiKey: process.env.BETTER_AUTH_API_KEY,
     activityTracking:{
