@@ -19,7 +19,13 @@ type Invitation = {
   organizationName: string
 }
 
-export function AcceptInvitation({ invitationId }: { invitationId: string }) {
+export function AcceptInvitation({
+  invitationId,
+  invitedEmail,
+}: {
+  invitationId: string
+  invitedEmail?: string
+}) {
   const router = useRouter()
   const { data: session, isPending: sessionPending } = authClient.useSession()
 
@@ -89,19 +95,39 @@ export function AcceptInvitation({ invitationId }: { invitationId: string }) {
   }
 
   if (!session) {
+    const redirect = `/accept-invitation/${invitationId}${
+      invitedEmail ? `?email=${encodeURIComponent(invitedEmail)}` : ""
+    }`
+    const loginHref = `/login?redirect=${encodeURIComponent(redirect)}`
+    const signupHref = `/signup?redirect=${encodeURIComponent(redirect)}${
+      invitedEmail ? `&email=${encodeURIComponent(invitedEmail)}` : ""
+    }`
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Sign in to continue</CardTitle>
-          <CardDescription>Sign in to view and accept this invitation.</CardDescription>
+          <CardTitle>Join the organization</CardTitle>
+          <CardDescription>
+            {invitedEmail ? (
+              <>
+                Sign in or create an account with <strong>{invitedEmail}</strong> to accept this
+                invitation.
+              </>
+            ) : (
+              "Sign in or create an account to accept this invitation."
+            )}
+          </CardDescription>
         </CardHeader>
-        <CardFooter>
+        <CardFooter className="gap-2">
           <Button
-            className="w-full"
+            variant="outline"
+            className="flex-1"
             nativeButton={false}
-            render={<Link href={`/login?redirect=${encodeURIComponent(`/accept-invitation/${invitationId}`)}`} />}
+            render={<Link href={loginHref} />}
           >
             Sign in
+          </Button>
+          <Button className="flex-1" nativeButton={false} render={<Link href={signupHref} />}>
+            Create account
           </Button>
         </CardFooter>
       </Card>

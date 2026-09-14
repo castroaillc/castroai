@@ -46,7 +46,8 @@ export const auth = betterAuth({
     },
     organizationLimit: 1,
     sendInvitationEmail: async (data) => {
-      const url = `${process.env.BETTER_AUTH_URL ?? "http://localhost:3000"}/accept-invitation/${data.id}`;
+      const base = process.env.BETTER_AUTH_URL ?? "http://localhost:3000";
+      const url = `${base}/accept-invitation/${data.id}?email=${encodeURIComponent(data.email)}`;
       await sendOrganizationInvitationEmail({
         to: data.email,
         organizationName: data.organization.name,
