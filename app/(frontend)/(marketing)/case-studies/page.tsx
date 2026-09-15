@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { getCaseStudies } from "@/lib/case-studies"
+import { getCaseStudies, getCaseStudyGridClass } from "@/lib/case-studies"
 import { getMediaUrl } from "@/lib/media"
 import { defaultOgImage } from "@/lib/site"
 
@@ -50,7 +50,7 @@ export default async function CaseStudiesPage() {
           No case studies published yet.
         </p>
       ) : (
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`mt-12 ${getCaseStudyGridClass(caseStudies.length)}`}>
           {caseStudies.map((caseStudy) => {
             const imageUrl = getMediaUrl(caseStudy.heroImage)
 

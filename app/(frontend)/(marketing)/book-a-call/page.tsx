@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+import { BookingEmbed } from "@/components/booking-embed"
+
 export const metadata: Metadata = {
   title: "Book a Call — castroai",
 }
@@ -14,15 +16,7 @@ export default function BookACallPage() {
         </p>
       </div>
 
-      <div className="mt-10 overflow-hidden rounded-lg border">
-        <iframe
-          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2eSG-Hp5MKr5zUnzzlOpB72s5_30z00CZWct-Kdh1SNRr7Nas7yukssbFmrtyCcBV93fdFRpfa?gv=true"
-          title="Book a call"
-          className="h-[700px] w-full"
-          style={{ border: 0 }}
-          loading="lazy"
-        />
-      </div>
+      <BookingEmbed className="mt-10" />
     </div>
   )
 }

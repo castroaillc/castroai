@@ -141,5 +141,42 @@ export const Landing: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'caseStudiesHeading',
+      type: 'text',
+      required: true,
+      defaultValue: 'See it in action',
+    },
+    {
+      name: 'caseStudiesSubheading',
+      type: 'textarea',
+      required: true,
+      defaultValue: 'Real teams, real results with castroai.',
+    },
+    {
+      name: 'testimonialsHeading',
+      type: 'text',
+      required: true,
+      defaultValue: 'Loved by founders',
+    },
+    {
+      name: 'testimonialsSubheading',
+      type: 'textarea',
+      required: true,
+      defaultValue: 'Hear from teams already running their GTM, sales, and support on castroai.',
+    },
+    {
+      name: 'contactHeading',
+      type: 'text',
+      required: true,
+      defaultValue: "Let's talk",
+    },
+    {
+      name: 'contactSubheading',
+      type: 'textarea',
+      required: true,
+      defaultValue:
+        "Tell us about your team and we'll help you find the right agents to start with.",
+    },
   ],
 }

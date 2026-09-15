@@ -2,9 +2,9 @@ import Link from "next/link"
 import { headers } from "next/headers"
 
 import { auth } from "@/lib/auth"
-import { Button } from "@/components/ui/button"
 import { CookiePreferencesLink } from "@/components/analytics-consent"
 import { Logo } from "@/components/logo"
+import { MarketingNav } from "@/components/marketing-nav"
 
 export default async function MarketingLayout({
   children,
@@ -15,44 +15,13 @@ export default async function MarketingLayout({
 
   return (
     <div className="flex min-h-svh flex-col">
-      <header className="flex items-center justify-between border-b px-6 py-4">
-        <Link href="/">
-          <Logo className="text-lg" />
-        </Link>
-        <nav className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            nativeButton={false}
-            render={<Link href="/case-studies" />}
-          >
-            Case Studies
-          </Button>
-          <Button
-            variant="ghost"
-            nativeButton={false}
-            render={<Link href="/book-a-call" />}
-          >
-            Book a call
-          </Button>
-          {session ? (
-            <Button nativeButton={false} render={<Link href="/dashboard" />}>
-              Dashboard
-            </Button>
-          ) : (
-            <>
-              <Button
-                variant="ghost"
-                nativeButton={false}
-                render={<Link href="/login" />}
-              >
-                Login
-              </Button>
-              <Button nativeButton={false} render={<Link href="/login" />}>
-                Get Started
-              </Button>
-            </>
-          )}
-        </nav>
+      <header className="border-b">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+          <Link href="/">
+            <Logo className="text-lg" />
+          </Link>
+          <MarketingNav isAuthenticated={!!session} />
+        </div>
       </header>
       <main className="flex flex-1 flex-col">{children}</main>
       <footer className="border-t">
@@ -60,7 +29,7 @@ export default async function MarketingLayout({
           <div className="lg:col-span-2">
             <Logo className="text-lg" />
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-              castroai brings your team, projects, and data together in a single dashboard.
+              Your startup&rsquo;s AI team, on one subscription.
             </p>
           </div>
           <div>

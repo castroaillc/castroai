@@ -9,8 +9,10 @@ import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
 import { CaseStudies } from './collections/CaseStudies'
+import { ContactSubmissions } from './collections/ContactSubmissions'
 import { Admins } from './collections/Admins'
 import { Media } from './collections/Media'
+import { Testimonials } from './collections/Testimonials'
 import { Landing } from './globals/Landing'
 import { getSiteUrl } from './lib/site'
 
@@ -27,7 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname, 'app', '(payload)'),
     },
   },
-  collections: [Admins, Media, CaseStudies],
+  collections: [Admins, Media, CaseStudies, Testimonials, ContactSubmissions],
   globals: [Landing],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

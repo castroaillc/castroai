@@ -70,6 +70,8 @@ export interface Config {
     admins: Admin;
     media: Media;
     'case-studies': CaseStudy;
+    testimonials: Testimonial;
+    'contact-submissions': ContactSubmission;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +82,8 @@ export interface Config {
     admins: AdminsSelect<false> | AdminsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -218,6 +222,40 @@ export interface CaseStudy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  quote: string;
+  authorName: string;
+  /**
+   * e.g. Founder & CEO
+   */
+  authorRole?: string | null;
+  authorCompany?: string | null;
+  avatar?: (number | null) | Media;
+  /**
+   * Lower numbers show first on the landing page.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  name: string;
+  email: string;
+  company?: string | null;
+  message: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -251,6 +289,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'case-studies';
         value: number | CaseStudy;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -360,6 +406,32 @@ export interface CaseStudiesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  quote?: T;
+  authorName?: T;
+  authorRole?: T;
+  authorCompany?: T;
+  avatar?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  company?: T;
+  message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -430,6 +502,12 @@ export interface Landing {
         id?: string | null;
       }[]
     | null;
+  caseStudiesHeading: string;
+  caseStudiesSubheading: string;
+  testimonialsHeading: string;
+  testimonialsSubheading: string;
+  contactHeading: string;
+  contactSubheading: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -462,6 +540,12 @@ export interface LandingSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  caseStudiesHeading?: T;
+  caseStudiesSubheading?: T;
+  testimonialsHeading?: T;
+  testimonialsSubheading?: T;
+  contactHeading?: T;
+  contactSubheading?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

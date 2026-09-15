@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 import { getCaseStudies, getCaseStudyBySlug } from "@/lib/case-studies"
@@ -62,7 +63,13 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <article className="mx-auto w-full max-w-3xl px-6 py-16">
-      <div className="text-center">
+      <Link
+        href="/case-studies"
+        className="text-sm font-medium text-muted-foreground hover:text-foreground hover:underline"
+      >
+        &larr; Back to case studies
+      </Link>
+      <div className="mt-8 text-center">
         {caseStudy.client && (
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
             {caseStudy.client}

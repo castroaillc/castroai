@@ -79,3 +79,41 @@ export async function sendPasswordResetEmail({ to, url }: { to: string; url: str
   })
   if (error) throw new Error(error.message)
 }
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+}
+
+export async function sendContactFormNotification({
+  name,
+  email,
+  company,
+  message,
+}: {
+  name: string
+  email: string
+  company?: string
+  message: string
+}) {
+  const to = process.env.CONTACT_EMAIL || "support@castroai.com"
+  const { error } = await resend.emails.send({
+    from: getFrom(),
+    to,
+    replyTo: email,
+    subject: `New contact form submission from ${name}`,
+    html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 32px 24px; color: #18181b;">
+        <h1 style="font-size: 18px; font-weight: 600; margin: 0 0 16px;">New contact form submission</h1>
+        <p style="font-size: 14px; line-height: 1.6; color: #52525b; margin: 0 0 4px;"><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p style="font-size: 14px; line-height: 1.6; color: #52525b; margin: 0 0 4px;"><strong>Email:</strong> ${escapeHtml(email)}</p>
+        ${company ? `<p style="font-size: 14px; line-height: 1.6; color: #52525b; margin: 0 0 4px;"><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
+        <p style="font-size: 14px; line-height: 1.6; color: #52525b; margin: 16px 0 0; white-space: pre-wrap;">${escapeHtml(message)}</p>
+      </div>
+    `,
+  })
+  if (error) throw new Error(error.message)
+}
