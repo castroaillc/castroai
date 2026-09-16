@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withPayload } from "@payloadcms/next/withPayload";
+import { withEve } from "eve/next";
 
 const nextConfig: NextConfig = {
   images: {
@@ -10,4 +11,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(nextConfig);
+export default withEve(withPayload(nextConfig), {
+  agents: {
+    "social-media": "./agents/social-media",
+  },
+});

@@ -4,3 +4,6 @@ allowBuilds:
   msgpackr-extract: set this to true or false
   unrs-resolver: set this to true or false
   workerd: set this to true or false
+  sharp: false
+minimumReleaseAgeExclude:
+  - eve@0.57.0

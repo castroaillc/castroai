@@ -11,7 +11,27 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar"
-import { LayoutDashboardIcon, Building2Icon, CreditCardIcon } from "lucide-react"
+import {
+  LayoutDashboardIcon,
+  Building2Icon,
+  CreditCardIcon,
+  TargetIcon,
+  MegaphoneIcon,
+  HandshakeIcon,
+  HeadsetIcon,
+  UserSearchIcon,
+  GaugeIcon,
+} from "lucide-react"
+import { agents } from "@/lib/agents"
+
+const agentIcons: Record<string, React.ReactNode> = {
+  gtm: <TargetIcon />,
+  "social-media": <MegaphoneIcon />,
+  sales: <HandshakeIcon />,
+  support: <HeadsetIcon />,
+  talent: <UserSearchIcon />,
+  ops: <GaugeIcon />,
+}
 
 const data = {
   navMain: [
@@ -31,6 +51,11 @@ const data = {
       icon: <CreditCardIcon />,
     },
   ],
+  navAgents: agents.map((agent) => ({
+    title: agent.name,
+    url: `/dashboard/agents/${agent.slug}`,
+    icon: agentIcons[agent.slug],
+  })),
 }
 
 export function AppSidebar({
@@ -50,6 +75,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavMain items={data.navAgents} label="Agents" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={{ name: user.name, email: user.email, avatar: user.image ?? "" }} />
