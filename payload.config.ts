@@ -19,6 +19,17 @@ import { getSiteUrl } from './lib/site'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+// node-postgres currently treats sslmode=require (Neon's default) as an
+// alias for verify-full, but a future pg-connection-string major version
+// drops that aliasing in favor of weaker libpq semantics. Pin verify-full
+// explicitly so behavior doesn't silently change on a dependency bump.
+function withVerifyFullSsl(connectionString: string): string {
+  if (!connectionString) return connectionString
+  const url = new URL(connectionString)
+  url.searchParams.set('sslmode', 'verify-full')
+  return url.toString()
+}
+
 export default buildConfig({
   // The Payload admin UI lives at /admin (see app/(payload)) and is
   // deliberately kept separate from the app's own better-auth users -
@@ -38,7 +49,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      connectionString: withVerifyFullSsl(process.env.DATABASE_URL || ''),
     },
     // castroai shares this Postgres database with better-auth (lib/auth-schema.ts).
     // Keeping Payload's tables in their own schema stops drizzle-kit's dev push
