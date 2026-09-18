@@ -19,14 +19,19 @@ export default async function AgentPage({
 
   return (
     <div className="flex flex-1 flex-col gap-6">
-      <div>
-        <Badge variant="secondary" className="text-primary">
-          {agent.pillar}
-        </Badge>
-        <h1 className="mt-2 font-heading text-xl font-semibold tracking-wide uppercase">
-          {agent.name}
-        </h1>
-        <p className="text-sm text-muted-foreground">{agent.description}</p>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="text-primary">
+            {agent.pillar}
+          </Badge>
+          {!agent.available ? <Badge variant="outline">Beta</Badge> : null}
+        </div>
+        <div>
+          <h1 className="font-heading text-xl font-semibold tracking-wide uppercase">
+            {agent.name}
+          </h1>
+          <p className="text-sm text-muted-foreground">{agent.description}</p>
+        </div>
       </div>
 
       {agent.available ? (
@@ -36,7 +41,8 @@ export default async function AgentPage({
           <CardHeader>
             <CardTitle className="normal-case">Coming soon</CardTitle>
             <CardDescription>
-              {agent.name} isn&apos;t wired up yet. Check back as we roll out more of the team.
+              {agent.name} is in private beta — we&apos;re still rolling it out to everyone. Check
+              back soon.
             </CardDescription>
           </CardHeader>
           <CardContent />

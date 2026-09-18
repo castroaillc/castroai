@@ -13,20 +13,18 @@ import {
 
 export function NavMain({
   items,
-  label = "Platform",
 }: {
   items: {
     title: string
     url: string
     icon: React.ReactNode
   }[]
-  label?: string
 }) {
   const pathname = usePathname()
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+      <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>

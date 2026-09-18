@@ -2,6 +2,7 @@
 
 import * as React from "react"
 
+import { NavAgents } from "@/components/nav-agents"
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
 import { OrgSwitcher } from "@/components/org-switcher"
@@ -51,11 +52,6 @@ const data = {
       icon: <CreditCardIcon />,
     },
   ],
-  navAgents: agents.map((agent) => ({
-    title: agent.name,
-    url: `/dashboard/agents/${agent.slug}`,
-    icon: agentIcons[agent.slug],
-  })),
 }
 
 export function AppSidebar({
@@ -75,7 +71,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavMain items={data.navAgents} label="Agents" />
+        <NavAgents agents={agents} icons={agentIcons} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={{ name: user.name, email: user.email, avatar: user.image ?? "" }} />

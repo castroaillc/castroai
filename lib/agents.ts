@@ -1,7 +1,8 @@
 // The platform's "AI team" roster. Mirrors the marketing copy in
 // `globals/Landing.ts` so the dashboard and landing page agree on what each
-// agent is. `available` agents are wired to a real eve agent (see
-// `agents/<slug>/`); the rest render a "coming soon" state.
+// agent is. `pillar` doubles as the department used to group the dashboard
+// nav. The whole lineup is in beta; agents without a working eve backend
+// stay `available: false` and render a "coming soon" card instead.
 export type AgentDefinition = {
   slug: string
   pillar: string
